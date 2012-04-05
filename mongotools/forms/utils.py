@@ -19,8 +19,8 @@ def mongoengine_validate_wrapper(field, old_clean, new_clean):
     validator and raise a proper django.forms ValidationError if there
     are any problems.
     """
-    def inner_validate(value):
-        value = old_clean(value)
+    def inner_validate(value, *args, **kwargs):
+        value = old_clean(value, *args, **kwargs)
 
         if value is None and field.required:
             raise ValidationError("This field is required")
