@@ -55,7 +55,6 @@ class MongoSingleObjectMixin(object):
             raise AttributeError(u"Generic detail view %s must be"
                                  u" called with object pk."
                                  % self.__class__.__name__)
-
         try:
             obj = queryset.get()
         except queryset._document.DoesNotExist:
@@ -77,7 +76,7 @@ class MongoSingleObjectMixin(object):
                                            u"%(cls)s.get_object()." % {
                                                 'cls': self.__class__.__name__
                                         })
-        return self.queryset._clone()
+        return self.queryset.clone()
 
     def get_context_data(self, **kwargs):
         return kwargs
